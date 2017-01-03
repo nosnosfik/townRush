@@ -96,11 +96,60 @@
                         <outlet property="endPointAddress" destination="JMn-M9-Si8" id="mp4-ED-s7d"/>
                         <outlet property="mapTest" destination="TdM-UA-Gf6" id="xkj-qV-TJc"/>
                         <outlet property="startPointAddress" destination="0j0-y6-v9h" id="HrG-vB-Z0R"/>
+                        <segue destination="ELv-vc-42Z" kind="show" identifier="addressSegue" id="fb2-2n-Y4T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="112.5" y="107.74647887323944"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="TLu-jV-zZK">
+            <objects>
+                <tableViewController id="ELv-vc-42Z" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="hF0-8q-P6j">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="ujg-wQ-LKN">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="ELv-vc-42Z" id="IOh-FY-siu"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fib-Rb-sRt">
+                                <rect key="frame" x="0.0" y="72" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fib-Rb-sRt" id="PSI-8B-Ged">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ELv-vc-42Z" id="Sfc-vQ-Bnc"/>
+                            <outlet property="delegate" destination="ELv-vc-42Z" id="IgP-FW-lGL"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="RTq-C9-bWm" id="PQQ-OD-pzT"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vdB-PQ-oPR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="RTq-C9-bWm">
+                    <connections>
+                        <outlet property="delegate" destination="ELv-vc-42Z" id="s7o-lj-8GS"/>
+                        <outlet property="searchBar" destination="ujg-wQ-LKN" id="rds-hm-KAb"/>
+                        <outlet property="searchContentsController" destination="ELv-vc-42Z" id="uw5-HE-jki"/>
+                        <outlet property="searchResultsDataSource" destination="ELv-vc-42Z" id="ISr-Pl-YVx"/>
+                        <outlet property="searchResultsDelegate" destination="ELv-vc-42Z" id="S3R-bx-g1G"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="492" y="107"/>
         </scene>
     </scenes>
 </document>

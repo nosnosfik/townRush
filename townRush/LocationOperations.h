@@ -15,7 +15,6 @@
 
 
 + (id)sharedManager;
-//- (NSDictionary *)deviceLocation;
 - (double)deviceLatitude;
 - (double)deviceLongitude;
 

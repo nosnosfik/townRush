@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIView *mapTest;
 @property (weak, nonatomic) IBOutlet UITextField *startPointAddress;
 @property (weak, nonatomic) IBOutlet UITextField *endPointAddress;
-@property (strong,nonatomic) NSDictionary *coordsDictionary;
+
 
 @end
 
@@ -37,11 +37,11 @@
     mapView.myLocationEnabled = YES;
     [_mapTest addSubview:mapView];
     
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake([sharedManager deviceLatitude], [sharedManager deviceLongitude]);
-    marker.title = @"Sydney";
-    marker.snippet = @"Australia";
-    marker.map = mapView;
+//    GMSMarker *marker = [[GMSMarker alloc] init];
+//    marker.position = CLLocationCoordinate2DMake([sharedManager deviceLatitude], [sharedManager deviceLongitude]);
+//    marker.title = @"Sydney";
+//    marker.snippet = @"Australia";
+//    marker.map = mapView;
     
 }
 
@@ -63,7 +63,7 @@
 }
 
 -(void)keyboardWillShow {
-    // Animate the current view out of the way
+   
     if (self.view.frame.origin.y >= 0)
     {
         [self setViewMovedUp:YES];
