@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -35,7 +35,7 @@
                                         <rect key="frame" x="16" y="518" width="288" height="30"/>
                                         <state key="normal" title="Button"/>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="End Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JMn-M9-Si8">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="End Point" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="JMn-M9-Si8">
                                         <rect key="frame" x="16" y="446" width="288" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -44,7 +44,7 @@
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="A6p-nM-Tvq"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Start point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0j0-y6-v9h">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Start point" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0j0-y6-v9h">
                                         <rect key="frame" x="16" y="408" width="288" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -56,6 +56,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0c7-IV-yi3">
                                         <rect key="frame" x="16" y="484" width="288" height="30"/>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="addPointActionButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UwF-Dq-kpn"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -93,63 +96,15 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addPoint" destination="0c7-IV-yi3" id="exR-Rc-aVn"/>
                         <outlet property="endPointAddress" destination="JMn-M9-Si8" id="mp4-ED-s7d"/>
                         <outlet property="mapTest" destination="TdM-UA-Gf6" id="xkj-qV-TJc"/>
                         <outlet property="startPointAddress" destination="0j0-y6-v9h" id="HrG-vB-Z0R"/>
-                        <segue destination="ELv-vc-42Z" kind="show" identifier="addressSegue" id="fb2-2n-Y4T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="112.5" y="107.74647887323944"/>
-        </scene>
-        <!--Table View Controller-->
-        <scene sceneID="TLu-jV-zZK">
-            <objects>
-                <tableViewController id="ELv-vc-42Z" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="hF0-8q-P6j">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="ujg-wQ-LKN">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="ELv-vc-42Z" id="IOh-FY-siu"/>
-                            </connections>
-                        </searchBar>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fib-Rb-sRt">
-                                <rect key="frame" x="0.0" y="72" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fib-Rb-sRt" id="PSI-8B-Ged">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="ELv-vc-42Z" id="Sfc-vQ-Bnc"/>
-                            <outlet property="delegate" destination="ELv-vc-42Z" id="IgP-FW-lGL"/>
-                        </connections>
-                    </tableView>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="RTq-C9-bWm" id="PQQ-OD-pzT"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vdB-PQ-oPR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="RTq-C9-bWm">
-                    <connections>
-                        <outlet property="delegate" destination="ELv-vc-42Z" id="s7o-lj-8GS"/>
-                        <outlet property="searchBar" destination="ujg-wQ-LKN" id="rds-hm-KAb"/>
-                        <outlet property="searchContentsController" destination="ELv-vc-42Z" id="uw5-HE-jki"/>
-                        <outlet property="searchResultsDataSource" destination="ELv-vc-42Z" id="ISr-Pl-YVx"/>
-                        <outlet property="searchResultsDelegate" destination="ELv-vc-42Z" id="S3R-bx-g1G"/>
-                    </connections>
-                </searchDisplayController>
-            </objects>
-            <point key="canvasLocation" x="492" y="107"/>
+            <point key="canvasLocation" x="116" y="108"/>
         </scene>
     </scenes>
 </document>

@@ -16,6 +16,7 @@
 		C65476DE1E1BA38800D108DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C65476DC1E1BA38800D108DC /* LaunchScreen.storyboard */; };
 		C6DAC2F81E1BDC4A00763B0A /* LocationOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = C6DAC2F71E1BDC4A00763B0A /* LocationOperations.m */; };
 		C6DAC2FA1E1BDC6300763B0A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6DAC2F91E1BDC6300763B0A /* CoreLocation.framework */; };
+		C6F6F4ED1E1D8ABA00982ACE /* RoadPath.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F6F4EC1E1D8ABA00982ACE /* RoadPath.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,8 @@
 		C6DAC2F61E1BDC4A00763B0A /* LocationOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationOperations.h; sourceTree = "<group>"; };
 		C6DAC2F71E1BDC4A00763B0A /* LocationOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationOperations.m; sourceTree = "<group>"; };
 		C6DAC2F91E1BDC6300763B0A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C6F6F4EB1E1D8ABA00982ACE /* RoadPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoadPath.h; sourceTree = "<group>"; };
+		C6F6F4EC1E1D8ABA00982ACE /* RoadPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoadPath.m; sourceTree = "<group>"; };
 		E4A31620C43AF582070DF1D7 /* Pods-townRush.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-townRush.release.xcconfig"; path = "Pods/Target Support Files/Pods-townRush/Pods-townRush.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +80,8 @@
 				C65476D51E1BA38800D108DC /* ViewController.m */,
 				C6DAC2F61E1BDC4A00763B0A /* LocationOperations.h */,
 				C6DAC2F71E1BDC4A00763B0A /* LocationOperations.m */,
+				C6F6F4EB1E1D8ABA00982ACE /* RoadPath.h */,
+				C6F6F4EC1E1D8ABA00982ACE /* RoadPath.m */,
 				C65476D71E1BA38800D108DC /* Main.storyboard */,
 				C65476DA1E1BA38800D108DC /* Assets.xcassets */,
 				C65476DC1E1BA38800D108DC /* LaunchScreen.storyboard */,
@@ -235,6 +240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6F6F4ED1E1D8ABA00982ACE /* RoadPath.m in Sources */,
 				C6DAC2F81E1BDC4A00763B0A /* LocationOperations.m in Sources */,
 				C65476D61E1BA38800D108DC /* ViewController.m in Sources */,
 				C65476D31E1BA38800D108DC /* AppDelegate.m in Sources */,
@@ -356,6 +362,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89AD6892AE23F2A5E1C23E70 /* Pods-townRush.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = B443JKWG7Y;
 				INFOPLIST_FILE = townRush/Info.plist;
@@ -369,6 +376,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E4A31620C43AF582070DF1D7 /* Pods-townRush.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = B443JKWG7Y;
 				INFOPLIST_FILE = townRush/Info.plist;

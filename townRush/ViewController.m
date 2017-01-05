@@ -9,18 +9,33 @@
 #import "ViewController.h"
 #import "LocationOperations.h"
 @import GoogleMaps;
+@import GooglePlaces;
 
-@interface ViewController () <UITextFieldDelegate>
+@interface ViewController () <UITextFieldDelegate,GMSAutocompleteViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *mapTest;
-@property (weak, nonatomic) IBOutlet UITextField *startPointAddress;
-@property (weak, nonatomic) IBOutlet UITextField *endPointAddress;
+@property (strong,nonatomic) NSMutableArray *dataArray;
+@property (weak, nonatomic) IBOutlet UIButton *addPoint;
+@property (strong,nonatomic) UITextField* selectedTextField;
 
 
 @end
 
 @implementation ViewController {
     GMSMapView *mapView;
+}
+
+@synthesize dataArray = _dataArray;
+
+- (NSMutableArray*)dataArray {
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray arrayWithCapacity:5];
+        for (int i = 0; i < 5; i++) {
+            [_dataArray addObject:[NSNull null]];
+        }
+    }
+    
+    return _dataArray;
 }
 
 - (void)viewDidLoad {
@@ -36,140 +51,92 @@
     mapView = [GMSMapView mapWithFrame:self.mapTest.bounds camera:camera];
     mapView.myLocationEnabled = YES;
     [_mapTest addSubview:mapView];
-    
-//    GMSMarker *marker = [[GMSMarker alloc] init];
-//    marker.position = CLLocationCoordinate2DMake([sharedManager deviceLatitude], [sharedManager deviceLongitude]);
-//    marker.title = @"Sydney";
-//    marker.snippet = @"Australia";
-//    marker.map = mapView;
-    
+
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    
-    if (newString.length >2 ) {
-        NSLog(@"OLOLOLOLOLOL");
-    }
-    
-    return YES;
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(void)keyboardWillShow {
+-(void) autoCompleteViewController {
    
-    if (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:YES];
-    }
-    else if (self.view.frame.origin.y < 0)
-    {
-        [self setViewMovedUp:NO];
-    }
+    GMSAutocompleteViewController *acController = [[GMSAutocompleteViewController alloc] init];
+    acController.delegate = self;
+    [self presentViewController:acController animated:YES completion:nil];
+    
 }
 
--(void)keyboardWillHide {
-    if (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:YES];
-    }
-    else if (self.view.frame.origin.y < 0)
-    {
-        [self setViewMovedUp:NO];
-    }
+
+
+-(void)textFieldDidBeginEditing:(UITextField *)sender {
+    self.selectedTextField = sender;
+    [self autoCompleteViewController];
+
 }
 
--(void)textFieldDidBeginEditing:(UITextField *)sender
-{
-  
-    if ([sender isEqual:@""])
-    {
-        if  (self.view.frame.origin.y >= 0)
-        {
-            [self setViewMovedUp:YES];
+- (IBAction)addPointActionButton:(id)sender {
+     self.selectedTextField = nil;
+    [self autoCompleteViewController];
+
+    
+}
+
+- (void)viewController:(GMSAutocompleteViewController *)viewController didAutocompleteWithPlace:(GMSPlace *)place {
+    
+    RoadPath *path = [RoadPath new];
+    
+    path.coordinate = place.coordinate;
+    path.pointName = place.formattedAddress;
+    
+    if (self.selectedTextField == self.startPointAddress) {
+        [self.dataArray replaceObjectAtIndex:0 withObject:path];
+        [self dismissViewControllerAnimated:YES completion:^{
+            self.selectedTextField.text = path.pointName;
+        }];
+    } else if (self.selectedTextField == self.endPointAddress){
+        [self.dataArray replaceObjectAtIndex:4 withObject:path];
+        [self dismissViewControllerAnimated:YES completion:^{
+            self.selectedTextField.text = path.pointName;
+        }];
+    } else {
+        for(int i = 1; i <self.dataArray.count-1;i++){
+            if(self.dataArray[i] == (id)[NSNull null]){
+                [self.dataArray replaceObjectAtIndex:i withObject:path];
+                
+                break;
+            }
+            
         }
+        [self dismissViewControllerAnimated:YES completion:^{
+            self.selectedTextField.text = path.pointName;
+        }];
     }
-}
 
-
--(BOOL) textFieldShouldReturn: (UITextField *) textField {
-   
-     [self setViewMovedUp:NO];
-     [textField resignFirstResponder];
-    
-     return YES;
-
-}
-
--(void) textFieldDidEndEditing:(UITextField *)textField {
-    
-    if (textField == self.startPointAddress) {
+    if(self.dataArray[3] != (id)[NSNull null]){
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"Warning"
+                                     message:@"Maximum point capability reached"
+                                     preferredStyle:UIAlertControllerStyleAlert];
         
-        [self.endPointAddress becomeFirstResponder];
-        [self setViewMovedUp:YES];
+        UIAlertAction* yesButton = [UIAlertAction
+                                    actionWithTitle:@"OK"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action) {
+                                        [self dismissViewControllerAnimated:YES completion:nil];
+                                    }];
         
-    } else if (textField == self.endPointAddress) {
+        
+        [alert addAction:yesButton];
 
-       [self setViewMovedUp:NO];
-
+        [viewController presentViewController:alert animated:YES completion:nil];
     }
-
 }
 
--(void)setViewMovedUp:(BOOL)movedUp
-{
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    
-    CGRect rect = self.view.frame;
-    if (movedUp)
-    {
-        rect.origin.y -= kOFFSET_FOR_KEYBOARD;
-        rect.size.height += kOFFSET_FOR_KEYBOARD;
-    }
-    else
-    {
-        rect.origin.y += kOFFSET_FOR_KEYBOARD;
-        rect.size.height -= kOFFSET_FOR_KEYBOARD;
-    }
-    self.view.frame = rect;
-    
-    [UIView commitAnimations];
+- (void)viewController:(GMSAutocompleteViewController *)viewController didFailAutocompleteWithError:(NSError *)error {
+
+    NSLog(@"error: %ld", [error code]);
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)wasCancelled:(GMSAutocompleteViewController *)viewController {
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillShowNotification
-                                                  object:nil];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillHideNotification
-                                                  object:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

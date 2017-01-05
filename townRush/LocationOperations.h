@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import "RoadPath.h"
 
 @interface LocationOperations : NSObject <CLLocationManagerDelegate>
 
@@ -17,7 +18,10 @@
 + (id)sharedManager;
 - (double)deviceLatitude;
 - (double)deviceLongitude;
-
 - (void)loadLocationManager;
+- (void) saveData:(RoadPath*)userPath;
+- (NSDictionary*) readDataFromUserDefaults;
+- (void)deleteDataForKey:(NSString*)key;
+
 
 @end
