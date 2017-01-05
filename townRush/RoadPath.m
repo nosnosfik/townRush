@@ -14,9 +14,10 @@
 {
     self = [super init];
     if (self) {
-        self.coordinate = _coordinate;
+        self.coordinates = _coordinates;
         self.pointName = _pointName;
-        
+        self.pointID = _pointID;
+        self.array = _array;
     }
     return self;
 }

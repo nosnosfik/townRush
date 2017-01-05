@@ -19,9 +19,8 @@
 - (double)deviceLatitude;
 - (double)deviceLongitude;
 - (void)loadLocationManager;
-- (void) saveData:(RoadPath*)userPath;
-- (NSDictionary*) readDataFromUserDefaults;
 - (void)deleteDataForKey:(NSString*)key;
+-(void) addMarkerPoint:(id)map andData:(RoadPath *)userPath;
 
 
 @end

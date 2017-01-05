@@ -53,30 +53,30 @@
 //    
 //}
 
--(NSArray*)readDataFromUserDefaults {
-    
-    NSString *userPath = [[NSBundle mainBundle] bundleIdentifier];
-    NSDictionary *dataDict = [[NSUserDefaults standardUserDefaults] persistentDomainForName:userPath];
-    
-    NSArray *allKeys =  [dataDict allKeys];
-    NSArray *allValues =  [dataDict allValues];
-    NSUInteger objectsCount = [allKeys count];
-    
-    NSMutableArray *userDataArray = [NSMutableArray new];
-    
-    for (int i = 0; i <objectsCount ; i++) {
-        RoadPath *userPath = [RoadPath new];
-        userPath.pointName = allKeys[i];
-       // userPath.coordinate = allValues[i];
-        
-        [userDataArray addObject:userPath];
-    }
-    return userDataArray;
-}
+//-(NSArray*)readDataFromUserDefaults {
+//    
+//    NSString *userPath = [[NSBundle mainBundle] bundleIdentifier];
+//    NSDictionary *dataDict = [[NSUserDefaults standardUserDefaults] persistentDomainForName:userPath];
+//    
+//    NSArray *allKeys =  [dataDict allKeys];
+//    NSArray *allValues =  [dataDict allValues];
+//    NSUInteger objectsCount = [allKeys count];
+//    
+//    NSMutableArray *userDataArray = [NSMutableArray new];
+//    
+//    for (int i = 0; i <objectsCount ; i++) {
+//        RoadPath *userPath = [RoadPath new];
+//        userPath.pointName = allKeys[i];
+//       // userPath.coordinate = allValues[i];
+//        
+//        [userDataArray addObject:userPath];
+//    }
+//    return userDataArray;
+//}
 
--(void) addMarkerPoint:(id)map withLatitude:(double)latitude andLongitude:(double)longitude andData:(RoadPath *)userPath {
+-(void) addMarkerPoint:(id)map andData:(RoadPath *)userPath {
         GMSMarker *marker = [[GMSMarker alloc] init];
-        marker.position = CLLocationCoordinate2DMake(latitude,longitude);
+        marker.position = userPath.coordinates;
         marker.title = userPath.pointName;
         marker.map = map;
 }
