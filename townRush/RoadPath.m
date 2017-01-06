@@ -17,7 +17,6 @@
         self.coordinates = _coordinates;
         self.pointName = _pointName;
         self.pointID = _pointID;
-        self.array = _array;
     }
     return self;
 }

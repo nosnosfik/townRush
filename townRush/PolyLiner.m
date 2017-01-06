@@ -51,30 +51,20 @@ static NSString *apiKey = @"AIzaSyCozMdZxDdO9VbouNhCj69HuidsxqEZANE";
 }
 
 -(void) drawPolylineOnMap:(GMSMapView*)map andData:(NSDictionary*)data{
-    
-
-    NSString *routeString = [NSString new];
 
     NSArray *route = [NSArray new];
 
     route = [data valueForKeyPath:@"routes.legs.steps.polyline.points"];
-
+    
                 for (id array in route) {
                     for (id obj in array) {
                         for (id locString in obj) {
-                            routeString = [routeString stringByAppendingString:locString];
+                            GMSPolyline *rectangle = [GMSPolyline polylineWithPath:[GMSPath pathFromEncodedPath:locString]];
+                            rectangle.map = map;
                         }
                     }
                 }
-    
-    GMSPath *path = [GMSPath pathFromEncodedPath:routeString];
-    
-    GMSPolyline *rectangle = [GMSPolyline polylineWithPath:path];
-    
-    rectangle.map = map;
-        NSLog(@"%@",routeString);
 
- 
 }
 
 

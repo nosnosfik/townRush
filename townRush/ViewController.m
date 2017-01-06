@@ -5,12 +5,12 @@
 //  Created by Nikita Taranov on 1/3/17.
 //  Copyright © 2017 Nikita Taranov. All rights reserved.
 //
-#define kOFFSET_FOR_KEYBOARD 185.0
+@import GoogleMaps;
+@import GooglePlaces;
 #import "ViewController.h"
 #import "LocationOperations.h"
 #import "PolyLiner.h"
-@import GoogleMaps;
-@import GooglePlaces;
+
 
 @interface ViewController () <UITextFieldDelegate,GMSAutocompleteViewControllerDelegate>
 
@@ -58,7 +58,7 @@
 
 -(void) autoCompleteViewController {
    
-    GMSAutocompleteViewController *acController = [[GMSAutocompleteViewController alloc] init];
+    GMSAutocompleteViewController *acController = [GMSAutocompleteViewController new];
     acController.delegate = self;
     [self presentViewController:acController animated:YES completion:nil];
     
@@ -99,14 +99,13 @@
 }
 
 -(void)viewController:(GMSAutocompleteViewController *)viewController didAutocompleteWithPlace:(GMSPlace *)place{
+    
     RoadPath *path = [RoadPath new];
     
     path.coordinates = place.coordinate;
     path.pointName = place.formattedAddress;
     path.pointID = place.placeID;
-    
-    
-    
+
     LocationOperations *operations = [LocationOperations sharedManager];
     
     if (self.selectedTextField == self.startPointAddress) {
@@ -134,7 +133,7 @@
             [operations addMarkerPoint:mapView andData:path];
         }];
     }
-    
+    if (self.selectedTextField == self.endPointAddress){
     PolyLiner *liner = [PolyLiner new];
     
     [liner getDataFromServerWithData:self.dataArray completion:^(id JSON) {
@@ -142,59 +141,11 @@
     } failure:^(NSError *error) {
         
     }];
-    
+}
+
     
 
 }
-
-//- (void)viewController:(GMSAutocompleteViewController *)viewController didAutocompleteWithPlace:(GMSPlace *)place {
-//    
-//    RoadPath *path = [RoadPath new];
-//    
-//    path.coordinates = place.coordinate;
-//    path.pointName = place.formattedAddress;
-//    path.pointID = place.placeID;
-//    
-//    
-//    
-//    LocationOperations *operations = [LocationOperations sharedManager];
-//    
-//    if (self.selectedTextField == self.startPointAddress) {
-//        [self.dataArray replaceObjectAtIndex:0 withObject:path];
-//        [self dismissViewControllerAnimated:YES completion:^{
-//            self.selectedTextField.text = path.pointName;
-//            [operations addMarkerPoint:mapView andData:path];
-//        }];
-//    } else if (self.selectedTextField == self.endPointAddress){
-//        [self.dataArray replaceObjectAtIndex:4 withObject:path];
-//        [self dismissViewControllerAnimated:YES completion:^{
-//            self.selectedTextField.text = path.pointName;
-//            [operations addMarkerPoint:mapView andData:path];
-//        }];
-//    } else if (self.selectedTextField == nil) {
-//        for(int i = 1; i <self.dataArray.count-1;i++){
-//            if(self.dataArray[i] == (id)[NSNull null]){
-//                [self.dataArray replaceObjectAtIndex:i withObject:path];
-//                
-//                break;
-//            }
-//        }
-//        [self dismissViewControllerAnimated:YES completion:^{
-//            self.selectedTextField.text = path.pointName;
-//            [operations addMarkerPoint:mapView andData:path];
-//        }];
-//    }
-//    
-//    PolyLiner *liner = [PolyLiner new];
-//    
-//    [liner getDataFromServerWithData:self.dataArray completion:^(id JSON) {
-//        [liner drawPolylineOnMap:mapView andData:JSON];
-//    } failure:^(NSError *error) {
-//        
-//    }];
-//    
-//
-//}
 
 - (void)viewController:(GMSAutocompleteViewController *)viewController didFailAutocompleteWithError:(NSError *)error {
 
@@ -203,7 +154,7 @@
 }
 
 - (void)wasCancelled:(GMSAutocompleteViewController *)viewController {
-
+    NSLog(@"Ebat oshibka");
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

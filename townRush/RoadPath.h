@@ -14,7 +14,7 @@
 @property (nonatomic, assign) CLLocationCoordinate2D coordinates;
 @property (nonatomic, copy) NSString *pointName;
 @property (nonatomic, copy) NSString *pointID;
-@property (nonatomic, strong) NSArray *array;
+
 
 
 @end
