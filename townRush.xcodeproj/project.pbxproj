@@ -15,6 +15,7 @@
 		C65476D91E1BA38800D108DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C65476D71E1BA38800D108DC /* Main.storyboard */; };
 		C65476DB1E1BA38800D108DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C65476DA1E1BA38800D108DC /* Assets.xcassets */; };
 		C65476DE1E1BA38800D108DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C65476DC1E1BA38800D108DC /* LaunchScreen.storyboard */; };
+		C6CC96241E23E0C400C15CAD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6CC96231E23E0C400C15CAD /* MapKit.framework */; };
 		C6DAC2F81E1BDC4A00763B0A /* LocationOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = C6DAC2F71E1BDC4A00763B0A /* LocationOperations.m */; };
 		C6DAC2FA1E1BDC6300763B0A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6DAC2F91E1BDC6300763B0A /* CoreLocation.framework */; };
 		C6F6F4ED1E1D8ABA00982ACE /* RoadPath.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F6F4EC1E1D8ABA00982ACE /* RoadPath.m */; };
@@ -36,6 +37,7 @@
 		C65476DA1E1BA38800D108DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C65476DD1E1BA38800D108DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C65476DF1E1BA38800D108DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6CC96231E23E0C400C15CAD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C6DAC2F61E1BDC4A00763B0A /* LocationOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationOperations.h; sourceTree = "<group>"; };
 		C6DAC2F71E1BDC4A00763B0A /* LocationOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationOperations.m; sourceTree = "<group>"; };
 		C6DAC2F91E1BDC6300763B0A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -48,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6CC96241E23E0C400C15CAD /* MapKit.framework in Frameworks */,
 				C6DAC2FA1E1BDC6300763B0A /* CoreLocation.framework in Frameworks */,
 				7E83411A876E8984DF0E4627 /* libPods-townRush.a in Frameworks */,
 			);
@@ -107,6 +110,7 @@
 		D96FF3E6180C017DFF8EDF2B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C6CC96231E23E0C400C15CAD /* MapKit.framework */,
 				C6DAC2F91E1BDC6300763B0A /* CoreLocation.framework */,
 				ACC11775EC146BA9207203F0 /* libPods-townRush.a */,
 			);

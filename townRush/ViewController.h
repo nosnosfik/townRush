@@ -10,7 +10,6 @@
 
 @interface ViewController : UIViewController <GMSAutocompleteViewControllerDelegate>
 
-@property(strong,nonatomic) NSString *textString;
 @property (weak, nonatomic) IBOutlet UITextField *startPointAddress;
 @property (weak, nonatomic) IBOutlet UITextField *endPointAddress;
 

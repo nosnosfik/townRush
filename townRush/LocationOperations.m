@@ -7,11 +7,13 @@
 //
 
 #import "LocationOperations.h"
-@import GoogleMaps;
+#import <QuartzCore/QuartzCore.h>
+
 
 @implementation LocationOperations
 
 @synthesize locationManager;
+
 
 + (id)sharedManager {
     static LocationOperations *sharedDataProcessing = nil;
@@ -49,11 +51,50 @@
         marker.title = userPath.pointName;
         marker.map = map;
 }
-
-
--(void)deleteDataForKey:(NSString*)key{
+GMSMarker *carMarker;
+-(void)updateLocationoordinates:(CLLocationCoordinate2D) coordinates onMap:(GMSMapView*)map
+{
     
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+    if (carMarker == nil) {
+        carMarker = [GMSMarker markerWithPosition:coordinates];
+       // carMarker.icon = [UIImage imageNamed:CAR_IMAGE];
+        carMarker.map = map;
+    } else {
+
+            [CATransaction begin];
+            [CATransaction setValue:[NSNumber numberWithFloat: 2] forKey:kCATransactionAnimationDuration];
+        
+            carMarker.position = coordinates;
+            GMSCameraPosition * camera = [GMSCameraPosition cameraWithLatitude:coordinates.latitude
+                                                                     longitude:coordinates.longitude
+                                                                          zoom:16];
+            map.camera = camera;
+
+            [CATransaction commit];
+            
+            NSLog(@"1");
+    
+    }
+}
+
+-(void)makeWrooomAndHustle:(NSArray *)coordsArray onMap:(GMSMapView*)map{
+
+    
+    dispatch_queue_t myQueue = dispatch_queue_create("My Queue",NULL);
+    dispatch_async(myQueue, ^{
+        NSMutableArray *fullrouteArray = [NSMutableArray new];
+        for (id array in coordsArray) {
+            for (CLLocation* obj in array) {
+                [fullrouteArray addObject:obj];
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            for (CLLocation* obj in fullrouteArray) {
+                [self updateLocationoordinates:obj.coordinate onMap:map];
+            }
+            
+        });
+    });
 
 }
 

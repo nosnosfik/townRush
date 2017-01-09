@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import "RoadPath.h"
+@import GoogleMaps;
 
 @interface LocationOperations : NSObject <CLLocationManagerDelegate>
 
@@ -19,8 +20,8 @@
 - (double)deviceLatitude;
 - (double)deviceLongitude;
 - (void)loadLocationManager;
-- (void)deleteDataForKey:(NSString*)key;
 -(void) addMarkerPoint:(id)map andData:(RoadPath *)userPath;
+-(void)makeWrooomAndHustle:(NSArray*)coordsArray onMap:(GMSMapView *)map;
 
 
 @end

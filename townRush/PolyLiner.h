@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RoadPath.h"
 @import GoogleMaps;
 
 
@@ -14,5 +15,5 @@
 
 - (void)getDataFromServerWithData:(NSArray*)data completion:(void (^)(id JSON))completion failure:(void (^)(NSError * error))failure;
 -(void) drawPolylineOnMap:(GMSMapView*)map andData:(NSDictionary*)data;
-
+-(NSArray*) getCoordsFromEncodedData:(NSDictionary*)data;
 @end

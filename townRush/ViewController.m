@@ -12,12 +12,14 @@
 #import "PolyLiner.h"
 
 
+
 @interface ViewController () <UITextFieldDelegate,GMSAutocompleteViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *mapTest;
 @property (strong,nonatomic) NSMutableArray *dataArray;
 @property (weak, nonatomic) IBOutlet UIButton *addPoint;
 @property (strong,nonatomic) UITextField* selectedTextField;
+
 
 
 @end
@@ -42,7 +44,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     LocationOperations *sharedManager = [LocationOperations sharedManager];
     
     [sharedManager loadLocationManager];
@@ -67,6 +69,18 @@
 -(void)textFieldDidBeginEditing:(UITextField *)sender {
     self.selectedTextField = sender;
     [self autoCompleteViewController];
+
+}
+- (IBAction)goAndSave:(id)sender {
+        LocationOperations *moveOn = [LocationOperations sharedManager];
+        PolyLiner *liner = [PolyLiner new];
+        [liner getDataFromServerWithData:self.dataArray completion:^(id JSON) {
+            [liner drawPolylineOnMap:nil andData:JSON];
+            [liner drawPolylineOnMap:mapView andData:JSON];
+             [moveOn makeWrooomAndHustle:[liner getCoordsFromEncodedData:JSON] onMap:mapView];
+        } failure:^(NSError *error) {
+            
+        }];
 
 }
 
@@ -133,16 +147,6 @@
             [operations addMarkerPoint:mapView andData:path];
         }];
     }
-    if (self.selectedTextField == self.endPointAddress){
-    PolyLiner *liner = [PolyLiner new];
-    
-    [liner getDataFromServerWithData:self.dataArray completion:^(id JSON) {
-        [liner drawPolylineOnMap:mapView andData:JSON];
-    } failure:^(NSError *error) {
-        
-    }];
-}
-
     
 
 }
@@ -154,7 +158,6 @@
 }
 
 - (void)wasCancelled:(GMSAutocompleteViewController *)viewController {
-    NSLog(@"Ebat oshibka");
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
