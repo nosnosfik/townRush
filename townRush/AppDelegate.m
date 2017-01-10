@@ -17,8 +17,8 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [GMSServices provideAPIKey:@"AIzaSyA8yTsOh930nqkpGSK2i1Ute9D9GYdM8Z8"];
-    [GMSPlacesClient provideAPIKey:@"AIzaSyCozMdZxDdO9VbouNhCj69HuidsxqEZANE"];
+    [GMSServices provideAPIKey:@"AIzaSyBeSANhZsSY0m1_FduOziNY2AU_-g_oMTg"];
+    [GMSPlacesClient provideAPIKey:@"AIzaSyCRbcmzLKuf7go1XpLa4rAnYGE0uJ3p8DQ"];
     return YES;
 }
 

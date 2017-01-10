@@ -12,6 +12,7 @@
 
 @implementation LocationOperations
 
+GMSMarker *carMarker;
 @synthesize locationManager;
 
 
@@ -51,49 +52,59 @@
         marker.title = userPath.pointName;
         marker.map = map;
 }
-GMSMarker *carMarker;
+
 -(void)updateLocationoordinates:(CLLocationCoordinate2D) coordinates onMap:(GMSMapView*)map
 {
-    
+  
     if (carMarker == nil) {
         carMarker = [GMSMarker markerWithPosition:coordinates];
-       // carMarker.icon = [UIImage imageNamed:CAR_IMAGE];
+        carMarker.icon = [UIImage imageNamed:@"taxi"];
         carMarker.map = map;
+        
     } else {
 
-            [CATransaction begin];
-            [CATransaction setValue:[NSNumber numberWithFloat: 2] forKey:kCATransactionAnimationDuration];
+        [CATransaction begin];
         
-            carMarker.position = coordinates;
+        [CATransaction setAnimationDuration:0.005f];
+        
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
             GMSCameraPosition * camera = [GMSCameraPosition cameraWithLatitude:coordinates.latitude
                                                                      longitude:coordinates.longitude
                                                                           zoom:16];
             map.camera = camera;
-
-            [CATransaction commit];
-            
-            NSLog(@"1");
-    
+        });
+        
+        GMSCameraUpdate *vancouverCam = [GMSCameraUpdate setTarget:coordinates];
+        [map animateWithCameraUpdate:vancouverCam];
+        carMarker.position = coordinates;
+        
     }
+
+        [CATransaction commit];
+    
+    
+
 }
 
 -(void)makeWrooomAndHustle:(NSArray *)coordsArray onMap:(GMSMapView*)map{
 
-    
-    dispatch_queue_t myQueue = dispatch_queue_create("My Queue",NULL);
-    dispatch_async(myQueue, ^{
+
         NSMutableArray *fullrouteArray = [NSMutableArray new];
         for (id array in coordsArray) {
             for (CLLocation* obj in array) {
                 [fullrouteArray addObject:obj];
             }
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            for (CLLocation* obj in fullrouteArray) {
-                [self updateLocationoordinates:obj.coordinate onMap:map];
-            }
-            
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0ul);
+    dispatch_async(queue, ^{
+       for (CLLocation* obj in fullrouteArray) {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self updateLocationoordinates:obj.coordinate onMap:map];
+           [NSThread sleepForTimeInterval:0.01f];
         });
+       }
     });
 
 }

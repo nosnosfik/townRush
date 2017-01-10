@@ -14,7 +14,7 @@
 @interface LocationOperations : NSObject <CLLocationManagerDelegate>
 
 @property(nonatomic,retain) CLLocationManager *locationManager;
-
+@property(atomic, assign) BOOL flagComplete;
 
 + (id)sharedManager;
 - (double)deviceLatitude;

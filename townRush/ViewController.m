@@ -26,7 +26,6 @@
 
 @implementation ViewController {
     GMSMapView *mapView;
-    GMSPolyline *nine;
 }
 
 @synthesize dataArray = _dataArray;
@@ -75,13 +74,11 @@
         LocationOperations *moveOn = [LocationOperations sharedManager];
         PolyLiner *liner = [PolyLiner new];
         [liner getDataFromServerWithData:self.dataArray completion:^(id JSON) {
-            [liner drawPolylineOnMap:nil andData:JSON];
             [liner drawPolylineOnMap:mapView andData:JSON];
-             [moveOn makeWrooomAndHustle:[liner getCoordsFromEncodedData:JSON] onMap:mapView];
+            [moveOn makeWrooomAndHustle:[liner getCoordsFromEncodedData:JSON] onMap:mapView];
         } failure:^(NSError *error) {
             
         }];
-
 }
 
 - (IBAction)addPointActionButton:(id)sender {

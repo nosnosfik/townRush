@@ -9,8 +9,7 @@
 #import "PolyLiner.h"
 #import "AFNetworking.h"
 
-
-static NSString *apiKey = @"AIzaSyCozMdZxDdO9VbouNhCj69HuidsxqEZANE";
+static NSString *apiKey = @"AIzaSyCRbcmzLKuf7go1XpLa4rAnYGE0uJ3p8DQ";
 
 @implementation PolyLiner
 
