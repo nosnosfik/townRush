@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7E83411A876E8984DF0E4627 /* libPods-townRush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC11775EC146BA9207203F0 /* libPods-townRush.a */; };
+		C609D9921E2493FA00EA7D56 /* JSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = C609D9911E2493FA00EA7D56 /* JSONData.m */; };
+		C609D9951E24951400EA7D56 /* PathesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C609D9941E24951400EA7D56 /* PathesTableViewController.m */; };
 		C641D5081E1EC181009AAA98 /* PolyLiner.m in Sources */ = {isa = PBXBuildFile; fileRef = C641D5071E1EC181009AAA98 /* PolyLiner.m */; };
 		C65476D01E1BA38800D108DC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C65476CF1E1BA38800D108DC /* main.m */; };
 		C65476D31E1BA38800D108DC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C65476D21E1BA38800D108DC /* AppDelegate.m */; };
@@ -25,6 +27,10 @@
 		6DE00CDFCB13359605CAD1D9 /* Pods-townRush.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-townRush.release.xcconfig"; path = "Pods/Target Support Files/Pods-townRush/Pods-townRush.release.xcconfig"; sourceTree = "<group>"; };
 		77812B2BB04FD0B72023FDD6 /* Pods-townRush.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-townRush.debug.xcconfig"; path = "Pods/Target Support Files/Pods-townRush/Pods-townRush.debug.xcconfig"; sourceTree = "<group>"; };
 		ACC11775EC146BA9207203F0 /* libPods-townRush.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-townRush.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C609D9901E2493FA00EA7D56 /* JSONData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONData.h; sourceTree = "<group>"; };
+		C609D9911E2493FA00EA7D56 /* JSONData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONData.m; sourceTree = "<group>"; };
+		C609D9931E24951400EA7D56 /* PathesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathesTableViewController.h; sourceTree = "<group>"; };
+		C609D9941E24951400EA7D56 /* PathesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathesTableViewController.m; sourceTree = "<group>"; };
 		C641D5061E1EC181009AAA98 /* PolyLiner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolyLiner.h; sourceTree = "<group>"; };
 		C641D5071E1EC181009AAA98 /* PolyLiner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolyLiner.m; sourceTree = "<group>"; };
 		C65476CB1E1BA38800D108DC /* townRush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = townRush.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +96,10 @@
 				C641D5071E1EC181009AAA98 /* PolyLiner.m */,
 				C6F6F4EB1E1D8ABA00982ACE /* RoadPath.h */,
 				C6F6F4EC1E1D8ABA00982ACE /* RoadPath.m */,
+				C609D9931E24951400EA7D56 /* PathesTableViewController.h */,
+				C609D9941E24951400EA7D56 /* PathesTableViewController.m */,
+				C609D9901E2493FA00EA7D56 /* JSONData.h */,
+				C609D9911E2493FA00EA7D56 /* JSONData.m */,
 				C65476D71E1BA38800D108DC /* Main.storyboard */,
 				C65476DA1E1BA38800D108DC /* Assets.xcassets */,
 				C65476DC1E1BA38800D108DC /* LaunchScreen.storyboard */,
@@ -251,8 +261,10 @@
 			files = (
 				C641D5081E1EC181009AAA98 /* PolyLiner.m in Sources */,
 				C6F6F4ED1E1D8ABA00982ACE /* RoadPath.m in Sources */,
+				C609D9951E24951400EA7D56 /* PathesTableViewController.m in Sources */,
 				C6DAC2F81E1BDC4A00763B0A /* LocationOperations.m in Sources */,
 				C65476D61E1BA38800D108DC /* ViewController.m in Sources */,
+				C609D9921E2493FA00EA7D56 /* JSONData.m in Sources */,
 				C65476D31E1BA38800D108DC /* AppDelegate.m in Sources */,
 				C65476D01E1BA38800D108DC /* main.m in Sources */,
 			);

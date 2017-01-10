@@ -5,11 +5,12 @@
 //  Created by Nikita Taranov on 1/3/17.
 //  Copyright © 2017 Nikita Taranov. All rights reserved.
 //
-@import GoogleMaps;
-@import GooglePlaces;
+
 #import "ViewController.h"
 #import "LocationOperations.h"
 #import "PolyLiner.h"
+#import "PathesTableViewController.h"
+
 
 
 
@@ -76,6 +77,7 @@
         [liner getDataFromServerWithData:self.dataArray completion:^(id JSON) {
             [liner drawPolylineOnMap:mapView andData:JSON];
             [moveOn makeWrooomAndHustle:[liner getCoordsFromEncodedData:JSON] onMap:mapView];
+            
         } failure:^(NSError *error) {
             
         }];
@@ -156,6 +158,19 @@
 
 - (void)wasCancelled:(GMSAutocompleteViewController *)viewController {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)unwindFromModalViewController:(UIStoryboardSegue *)segue {
+    PathesTableViewController *viewConroller = segue.sourceViewController;
+    if (viewConroller.listOfPathes) {
+
+        NSArray *pathArray = [NSKeyedUnarchiver unarchiveObjectWithData:self.storedPath];
+        PolyLiner *liner = [PolyLiner new];  
+            [liner buildAWay:pathArray onMap:mapView];
+
+        }
+
+    
 }
 
 @end

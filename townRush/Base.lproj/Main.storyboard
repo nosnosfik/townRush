@@ -65,7 +65,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="0j0-y6-v9h" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="39C-Ex-vp8"/>
                             <constraint firstItem="KfG-gg-e47" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="HNR-SL-sFp"/>
@@ -90,7 +90,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="organize" id="kd5-dc-CJ9">
                             <color key="tintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="e8a-8O-pWr" kind="show" id="G4w-ni-a1f"/>
+                                <segue destination="e8a-8O-pWr" kind="show" identifier="showDetail" id="G4w-ni-a1f"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -108,19 +108,22 @@
         <!--Saved pathes-->
         <scene sceneID="1Dv-aK-P5f">
             <objects>
-                <tableViewController title="Saved pathes" id="e8a-8O-pWr" sceneMemberID="viewController">
+                <tableViewController title="Saved pathes" id="e8a-8O-pWr" customClass="PathesTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kvM-VP-6Ih">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rLU-Xa-9u0">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="pathesCell" id="rLU-Xa-9u0">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rLU-Xa-9u0" id="566-vn-7t4">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="iDx-O1-Ttn" kind="unwind" unwindAction="unwindFromModalViewController:" id="KI4-W3-3g1"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -130,8 +133,9 @@
                     </tableView>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L6y-hI-IoX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="iDx-O1-Ttn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1575" y="108"/>
+            <point key="canvasLocation" x="1793" y="108"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="W0o-GL-phK">

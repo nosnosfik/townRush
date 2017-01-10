@@ -89,14 +89,12 @@ GMSMarker *carMarker;
 
 -(void)makeWrooomAndHustle:(NSArray *)coordsArray onMap:(GMSMapView*)map{
 
-
         NSMutableArray *fullrouteArray = [NSMutableArray new];
         for (id array in coordsArray) {
             for (CLLocation* obj in array) {
                 [fullrouteArray addObject:obj];
             }
         }
-    
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0ul);
     dispatch_async(queue, ^{
        for (CLLocation* obj in fullrouteArray) {

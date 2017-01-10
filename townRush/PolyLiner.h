@@ -16,4 +16,6 @@
 - (void)getDataFromServerWithData:(NSArray*)data completion:(void (^)(id JSON))completion failure:(void (^)(NSError * error))failure;
 -(void) drawPolylineOnMap:(GMSMapView*)map andData:(NSDictionary*)data;
 -(NSArray*) getCoordsFromEncodedData:(NSDictionary*)data;
+-(void) buildAWay:(NSArray*)array onMap:(GMSMapView*)map;
+
 @end

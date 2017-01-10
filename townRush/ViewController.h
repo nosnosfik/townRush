@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@import GoogleMaps;
+@import GooglePlaces;
 
 @interface ViewController : UIViewController <GMSAutocompleteViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *startPointAddress;
 @property (weak, nonatomic) IBOutlet UITextField *endPointAddress;
-
+@property (nonatomic, strong) NSData *storedPath;
 @end
 

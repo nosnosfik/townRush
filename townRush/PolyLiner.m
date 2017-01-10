@@ -8,8 +8,10 @@
 
 #import "PolyLiner.h"
 #import "AFNetworking.h"
+#import "JSONData.h"
+#import "LocationOperations.h"
 
-static NSString *apiKey = @"AIzaSyCRbcmzLKuf7go1XpLa4rAnYGE0uJ3p8DQ";
+static NSString *apiKey = @"AIzaSyCozMdZxDdO9VbouNhCj69HuidsxqEZANE";
 
 @implementation PolyLiner
 
@@ -124,11 +126,35 @@ static NSString *apiKey = @"AIzaSyCRbcmzLKuf7go1XpLa4rAnYGE0uJ3p8DQ";
     return coordsArray;
 }
 
+-(void) buildAWay:(NSArray*)array onMap:(GMSMapView*)map{
+    [map clear];
+    NSMutableArray *coordsArray = [NSMutableArray new];
+    for (id route in array) {
+        for (id obj in route) {
+            for (id locString in obj) {
+                [coordsArray addObject:[self decodePolyLine:locString]];
+                GMSPolyline *rectangle = [GMSPolyline polylineWithPath:[GMSPath pathFromEncodedPath:locString]];
+                rectangle.map = map;
+            }
+        }
+    }
+    LocationOperations *wayBy = [LocationOperations sharedManager];
+    [wayBy makeWrooomAndHustle:coordsArray onMap:map];
+}
+
 -(void) drawPolylineOnMap:(GMSMapView*)map andData:(NSDictionary*)data{
 
     NSArray *route = [NSArray new];
     route = [data valueForKeyPath:@"routes.legs.steps.polyline.points"];
     
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    
+    JSONData *articleRealm = [JSONData new];
+    articleRealm.JSONValue  = [NSKeyedArchiver archivedDataWithRootObject:route];;
+    [realm beginWriteTransaction];
+    [realm addObject:articleRealm];
+    [realm commitWriteTransaction];
+
                 for (id array in route) {
                     for (id obj in array) {
                         for (id locString in obj) {

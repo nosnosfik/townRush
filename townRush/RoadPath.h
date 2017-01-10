@@ -15,6 +15,4 @@
 @property (nonatomic, copy) NSString *pointName;
 @property (nonatomic, copy) NSString *pointID;
 
-
-
 @end
